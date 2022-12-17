@@ -1,0 +1,63 @@
+[tool.isort]
+profile = "black"
+
+[tool.pylint.'MESSAGES_CONTROL']
+max-line-length = 120
+disable = [
+    "missing-module-docstring",
+    "missing-class-docstring",
+    "invalid-name",
+    "pointless-string-statement",
+]
+
+[tool.pyright]
+pythonVersion = "3.11"
+pythonPlatform = "Linux"
+reportGeneralTypeIssues = false
+reportOptionalMemberAccess = false
+
+[tool.black]
+line-length = 120
+target-version = ['py311']
+
+[tool.pytest.ini_options]
+env_files = [
+    ".env"
+]
+env_override_existing_values = 1
+minversion = "7.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
+]
+log_cli = true
+log_cli_level = "WARNING"
+log_cli_format = "%(asctime)s [%(levelname)8s] (%(filename)s:%(lineno)s)\n   %(message)s"
+log_cli_date_format = "%H:%M:%S"
+
+[tool.poetry]
+name = "matweet"
+version = "0.1"
+description = ""
+authors = [
+    "Mateusz Pianka <m.pianka@onionlabs.pl>"
+]
+license = "Proprietrary"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+tweepy = "^4.12.1"
+cachetools = "^5.2.0"
+
+
+[tool.poetry.group.dev.dependencies]
+black = {extras = ["d"], version = "^22.10.0"}
+isort = "^5.10.1"
+pylint = "^2.15.5"
+pytest = "^7.2.0"
+pytest-mock = "^3.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
